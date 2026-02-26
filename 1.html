@@ -8,7 +8,7 @@
     <!-- 移动设备优化 -->
     <meta name="format-detection" content="telephone=no, email=no">
     <meta name="theme-color" content="#000">
-    <title>专属浪漫</title>
+    <title>滴滴滴</title>
     <style>
         * {
             margin: 0;
@@ -184,6 +184,18 @@
             perspective: 1000px;
         }
         
+        /* 围绕文字的星星 */
+        .text-star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: textStarRotate 4s linear infinite, twinkle 2s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(255,255,255,0.8);
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
         /* 星星闪烁动画 */
         @keyframes twinkle {
             0%, 100% {
@@ -227,9 +239,367 @@
                 opacity: 0;
             }
         }
+        
+        /* 文字星星旋转动画 */
+        @keyframes textStarRotate {
+            0% {
+                transform: rotate(0deg) translateX(0);
+            }
+            100% {
+                transform: rotate(360deg) translateX(0);
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 向上 */
+        @keyframes loveTextFloatUp {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -150px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 向下 */
+        @keyframes loveTextFloatDown {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, 100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, 150px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 向左 */
+        @keyframes loveTextFloatLeft {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-150px, -50%) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-200px, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 向右 */
+        @keyframes loveTextFloatRight {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(50px, -50%) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100px, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 左上 */
+        @keyframes loveTextFloatTopLeft {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-100px, -100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-150px, -150px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 右上 */
+        @keyframes loveTextFloatTopRight {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(50px, -100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100px, -150px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 左下 */
+        @keyframes loveTextFloatBottomLeft {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-100px, 100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-150px, 150px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 爱你文字漂浮动画 - 右下 */
+        @keyframes loveTextFloatBottomRight {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(50px, 100px) scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(100px, 150px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* 星星粒子样式 */
+        .star-particle {
+            position: fixed;
+            width: 4.5px;
+            height: 4.5px;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 101;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+        
+        /* 星星粒子动画 */
+        @keyframes starParticleFloat {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+        }
+        
+        /* 鲜花彩带 */
+        .flower-ribbon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 5;
+            overflow: hidden;
+        }
+        
+        /* 鲜花样式 */
+        .flower {
+            width: 40px;
+            height: 40px;
+            position: relative;
+            animation: flowerFloat 3s ease-in-out infinite;
+        }
+        
+        /* 花瓣1 */
+        .flower::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background: #ff6b81;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flowerRotate 4s linear infinite;
+            box-shadow: inset 0 0 5px rgba(255, 215, 0, 0.8);
+            top: 0;
+            left: 10px;
+            transform: rotate(0deg);
+        }
+        
+        /* 花瓣2 */
+        .flower::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background: #ff6b81;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flowerRotate 4s linear infinite;
+            box-shadow: inset 0 0 5px rgba(255, 215, 0, 0.8);
+            top: 0;
+            left: 10px;
+            transform: rotate(90deg);
+        }
+        
+        /* 为不同的鲜花设置不同的颜色 */
+        .flower:nth-child(1)::before,
+        .flower:nth-child(1)::after {
+            background: #ff6b81;
+        }
+        
+        .flower:nth-child(2)::before,
+        .flower:nth-child(2)::after {
+            background: #ff8fab;
+        }
+        
+        .flower:nth-child(3)::before,
+        .flower:nth-child(3)::after {
+            background: #ffb3c1;
+        }
+        
+        .flower:nth-child(4)::before,
+        .flower:nth-child(4)::after {
+            background: #ffc2d1;
+        }
+        
+        .flower:nth-child(5)::before,
+        .flower:nth-child(5)::after {
+            background: #ffd1e1;
+        }
+        
+        .flower:nth-child(6)::before,
+        .flower:nth-child(6)::after {
+            background: #ffe0f1;
+        }
+        
+        .flower:nth-child(7)::before,
+        .flower:nth-child(7)::after {
+            background: #fff0f1;
+        }
+        
+        .flower:nth-child(8)::before,
+        .flower:nth-child(8)::after {
+            background: #ff6b81;
+        }
+        
+        /* 花心 */
+        .flower {
+            position: relative;
+        }
+        
+        .flower::before {
+            /* 保持花瓣样式 */
+        }
+        
+        .flower::after {
+            /* 保持花瓣样式 */
+        }
+        
+        /* 为每个鲜花添加花心 */
+        .flower {
+            /* 花心将通过JavaScript动态添加 */
+        }
+        
+        /* 花心样式 */
+        .flower-center {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffd700;
+            border-radius: 50%;
+            top: 14px;
+            left: 14px;
+            z-index: 1;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+        }
+        
+        /* 鲜花漂浮动画 */
+        @keyframes flowerFloat {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.1);
+            }
+        }
+        
+        /* 鲜花旋转动画 */
+        @keyframes flowerRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* 为不同的鲜花设置不同的动画延迟 */
+        .flower:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .flower:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        
+        .flower:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        
+        .flower:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+        
+        .flower:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+        
+        .flower:nth-child(6) {
+            animation-delay: 1.5s;
+        }
+        
+        .flower:nth-child(7) {
+            animation-delay: 1.8s;
+        }
+        
+        .flower:nth-child(8) {
+            animation-delay: 2.1s;
+        }
     </style>
 </head>
 <body>
+    <!-- 鲜花彩带 -->
+    <div class="flower-ribbon">
+        <div class="flower"></div>
+        <div class="flower"></div>
+        <div class="flower"></div>
+        <div class="flower"></div>
+        <div class="flower"></div>
+        <div class="flower"></div>
+        <div class="flower"></div>
+        <div class="flower"></div>
+    </div>
+    
     <!-- 浪漫文字 -->
     <div class="text-container">
         <div class="romantic-text" id="main-text"></div>
@@ -238,8 +608,8 @@
     <script>
         // 动态生成爱心
         function createHearts() {
-            // 生成10个爱心（减少数量以提高手机性能）
-            for (let i = 0; i < 10; i++) {
+            // 生成5个爱心（减少数量以提高手机性能）
+            for (let i = 0; i < 5; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
                 
@@ -437,12 +807,155 @@
         
         // 点击计数变量
         let clickCount = 0;
+        // 存储文字星星的数组
+        let textStars = [];
+        
+        // 生成围绕文字的星星
+        function createTextStars() {
+            // 清除之前的文字星星
+            textStars.forEach(star => star.remove());
+            textStars = [];
+            
+            // 获取文字容器的位置和大小
+            const textContainer = document.querySelector('.text-container');
+            const rect = textContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const radius = Math.max(rect.width, rect.height) / 2 + 20;
+            
+            // 生成8个星星（减少数量以提高手机性能）
+            const starCount = 8;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'text-star';
+                
+                // 计算星星的位置
+                const angle = (i / starCount) * Math.PI * 2;
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                // 随机大小
+                const size = Math.random() * 3 + 2;
+                
+                // 随机动画延迟
+                const delay = Math.random() * 2;
+                
+                // 设置样式
+                star.style.left = `${x}px`;
+                star.style.top = `${y}px`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                star.style.position = 'fixed';
+                star.style.zIndex = '9';
+                
+                // 存储星星
+                textStars.push(star);
+                document.body.appendChild(star);
+            }
+        }
+        
+        // 生成星星粒子
+        function createStarParticles(x, y) {
+            // 生成6个星星粒子（减少数量以提高手机性能）
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'star-particle';
+                
+                // 随机角度和距离
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 100;
+                const finalX = Math.cos(angle) * distance;
+                const finalY = Math.sin(angle) * distance;
+                
+                // 随机大小，增大为原来的3/2
+                const size = (Math.random() * 2 + 1) * 1.5;
+                
+                // 设置样式
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animation = `starParticleFloat 2s ease-out forwards`;
+                
+                // 设置动画延迟
+                particle.style.animationDelay = `${Math.random() * 0.5}s`;
+                
+                // 设置变换
+                particle.style.transform = `translate(0, 0)`;
+                
+                // 添加到页面
+                document.body.appendChild(particle);
+                
+                // 应用变换动画
+                setTimeout(() => {
+                    particle.style.transition = 'transform 2s ease-out';
+                    particle.style.transform = `translate(${finalX}px, ${finalY}px)`;
+                }, 10);
+                
+                // 2秒后移除粒子
+                setTimeout(() => {
+                    particle.remove();
+                }, 2000);
+            }
+        }
+        
+        // 在点击位置显示"爱你"
+        function createLoveText(x, y) {
+            const loveText = document.createElement('div');
+            loveText.className = 'love-text';
+            loveText.textContent = '爱你';
+            
+            // 随机选择一个散开方向
+            const directions = ['Up', 'Down', 'Left', 'Right', 'TopLeft', 'TopRight', 'BottomLeft', 'BottomRight'];
+            const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+            const animationName = `loveTextFloat${randomDirection}`;
+            
+            // 设置样式
+            loveText.style.position = 'fixed';
+            loveText.style.left = `${x}px`;
+            loveText.style.top = `${y}px`;
+            loveText.style.transform = 'translate(-50%, -50%)';
+            loveText.style.color = '#fff';
+            loveText.style.fontSize = '24px';
+            loveText.style.fontWeight = 'bold';
+            loveText.style.textShadow = '0 2px 10px rgba(255, 65, 108, 0.8)';
+            loveText.style.zIndex = '100';
+            loveText.style.animation = `${animationName} 2s ease-out forwards`;
+            loveText.style.pointerEvents = 'none';
+            loveText.style.willChange = 'transform, opacity';
+            loveText.style.backfaceVisibility = 'hidden';
+            loveText.style.perspective = '1000px';
+            
+            document.body.appendChild(loveText);
+            
+            // 生成星星粒子
+            createStarParticles(x, y);
+            
+            // 2秒后移除文字
+            setTimeout(() => {
+                loveText.remove();
+            }, 2000);
+        }
+        
+        // 添加花心到鲜花
+        function addFlowerCenters() {
+            const flowers = document.querySelectorAll('.flower');
+            flowers.forEach(flower => {
+                const center = document.createElement('div');
+                center.className = 'flower-center';
+                flower.appendChild(center);
+            });
+        }
         
         // 页面加载完成后生成爱心、星星和花瓣，并启动打字动画
         window.onload = function() {
             createHearts();
             createStars();
             createPetals();
+            
+            // 添加花心到鲜花
+            addFlowerCenters();
             
             // 启动打字动画
             setTimeout(() => {
@@ -468,7 +981,12 @@
                     // 第一次点击，显示"想你（爱心）"
                     setTimeout(() => {
                         typeWriter(document.getElementById('main-text'), '想你 💖', 200);
+                        // 生成围绕文字的星星
+                        createTextStars();
                     }, 300);
+                } else if (clickCount >= 1) {
+                    // 后续点击，在点击位置显示"爱你"
+                    createLoveText(x, y);
                 }
             }
             
